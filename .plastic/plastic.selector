@@ -1,0 +1,4 @@
+repository "CoprtTest@jinqianNotime@cloud"
+  path "/"
+    br "/main"
+    co "/main"
