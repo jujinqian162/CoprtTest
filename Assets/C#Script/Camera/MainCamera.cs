@@ -10,7 +10,7 @@ public class MainCamera : MonoBehaviour
     Camera _cm;
     
     const float _resistance_delta = 0.01f;
-    public float _resistance = 1.45f;
+    public float _resistance = 2.5f;
     public float _scroll_speed = 0.3f;
     public bool _use_resistance = true;
     public float _camera_nomove_ranges = 3f;
@@ -23,7 +23,7 @@ public class MainCamera : MonoBehaviour
     }
     void Start()
     {
-        _resistance = 1.45f;
+        _resistance = 2.5f;
         _scroll_speed = 0.3f;
         _im.Start();
     }
