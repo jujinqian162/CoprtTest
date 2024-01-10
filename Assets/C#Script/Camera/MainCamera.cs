@@ -35,7 +35,7 @@ void Update()
     {
         _Input();
         MoveToPlayer(_player);
-        AddResistance();
+        AddResistance(); //加阻力
     }
     
     private void _Input()
@@ -72,7 +72,7 @@ void Update()
     {
         if (!_use_resistance) return;
         Vector2 v = _rb.velocity;
-        if (v.magnitude < _resistance_delta) return;
-        _rb.AddForce((-v.normalized) * _resistance * (v.magnitude + 1f));
+        if (v.magnitude < _resistance_delta) return; //速度小于一定值无阻力
+        _rb.AddForce((-v.normalized) * _resistance * (v.magnitude + 1f)); // 阻力与速度成一次函数
     }
 }
