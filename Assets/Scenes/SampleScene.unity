@@ -514,8 +514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c838240b760004243b5d64857806e6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resistance: 0.9
-  _scroll_speed: 5
+  _resistance: 1.45
+  _scroll_speed: 0.3
   _use_resistance: 1
   _camera_nomove_ranges: 1
 --- !u!50 &519420034
