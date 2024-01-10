@@ -6,8 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class MainCamera : MonoBehaviour
 {
     Rigidbody2D _rb;
-    IPlayer _player;
-    
+    MyInput _im;
     Camera _cm;
     
     const float _resistance_delta = 0.01f;
@@ -19,22 +18,23 @@ public class MainCamera : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();  
         _cm = GetComponent<Camera>();
+        _im = new MyInput();
+        _im.Awake();
     }
     void Start()
     {
-        _player = FindFirstObjectByType<IPlayer>();
-        
-        if (_player == null) { Debug.LogError("cannot find lwf or Player_LWF Component"); }
         _resistance = 1.45f;
         _scroll_speed = 0.3f;
-
+        _im.Start();
     }
 
 // Update is called once per frame
 void Update()
     {
+        _im.Update();
         _Input();
-        MoveToPlayer(_player);
+        //MoveToPlayer(_player);
+        MoveToPlayer2(_im.player);
         AddResistance(); //加阻力
     }
     
@@ -63,6 +63,16 @@ void Update()
         if (is_player_in_ranges(p)) return;
         float _diff = (transform.position - p.transform.position).magnitude - _camera_nomove_ranges;
         _rb.AddForce((p.transform.position - transform.position).normalized * _diff * _diff); // 力的大小与距离的二次方成正比
+    }
+    private void MoveToPlayer2(IPlayer2 p)
+    {
+        if (is_player2_in_ranges(p)) return;
+        float _diff = (transform.position - p.player.transform.position).magnitude - _camera_nomove_ranges;
+        _rb.AddForce((p.player.transform.position - transform.position).normalized * _diff * _diff); // 力的大小与距离的二次方成正比
+    }
+    private bool is_player2_in_ranges(IPlayer2 p)
+    {
+        return (transform.position - p.player.transform.position).magnitude < _camera_nomove_ranges;
     }
     private bool is_player_in_ranges(IPlayer p)
     {
