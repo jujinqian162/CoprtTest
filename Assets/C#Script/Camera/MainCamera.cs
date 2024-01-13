@@ -6,7 +6,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class MainCamera : MonoBehaviour
 {
     Rigidbody2D _rb;
-    MyInput _im;
+    IPlayer _player;
+    
     Camera _cm;
     
     const float _resistance_delta = 0.01f;
@@ -18,24 +19,23 @@ public class MainCamera : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();  
         _cm = GetComponent<Camera>();
-        _im = new MyInput();
-        _im.Awake();
     }
     void Start()
     {
-        _resistance = 2.5f;
+        _player = FindFirstObjectByType<IPlayer>();
+        
+        if (_player == null) { Debug.LogError("cannot find lwf or Player_LWF Component"); }
+        _resistance = 1.45f;
         _scroll_speed = 0.3f;
-        _im.Start();
+
     }
 
 // Update is called once per frame
 void Update()
     {
-        _im.Update();
         _Input();
-        //MoveToPlayer(_player);
-        MoveToPlayer2(_im.player);
-        AddResistance(); //加阻力
+        MoveToPlayer(_player);
+        AddResistance();
     }
     
     private void _Input()
@@ -64,16 +64,6 @@ void Update()
         float _diff = (transform.position - p.transform.position).magnitude - _camera_nomove_ranges;
         _rb.AddForce((p.transform.position - transform.position).normalized * _diff * _diff); // 力的大小与距离的二次方成正比
     }
-    private void MoveToPlayer2(IPlayer2 p)
-    {
-        if (is_player2_in_ranges(p)) return;
-        float _diff = (transform.position - p.player.transform.position).magnitude - _camera_nomove_ranges;
-        _rb.AddForce((p.player.transform.position - transform.position).normalized * _diff * _diff); // 力的大小与距离的二次方成正比
-    }
-    private bool is_player2_in_ranges(IPlayer2 p)
-    {
-        return (transform.position - p.player.transform.position).magnitude < _camera_nomove_ranges;
-    }
     private bool is_player_in_ranges(IPlayer p)
     {
         return (transform.position - p.transform.position).magnitude < _camera_nomove_ranges;
@@ -82,7 +72,7 @@ void Update()
     {
         if (!_use_resistance) return;
         Vector2 v = _rb.velocity;
-        if (v.magnitude < _resistance_delta) return; //速度小于一定值无阻力
-        _rb.AddForce((-v.normalized) * _resistance * (v.magnitude + 1f)); // 阻力与速度成一次函数
+        if (v.magnitude < _resistance_delta) return;
+        _rb.AddForce((-v.normalized) * _resistance * (v.magnitude + 1f));
     }
 }
