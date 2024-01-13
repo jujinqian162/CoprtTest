@@ -74,6 +74,10 @@ public class Player_LWF : IPlayer
         Bullet script = instantiatedPrefab.GetComponent<Bullet>();
         script._direction = transform.position;
     }
+    
+    public void PickupItem(Item )
+    {
 
+    }
 
 }

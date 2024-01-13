@@ -6,6 +6,8 @@ public class IPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
     protected Rigidbody2D _rb;
+    protected PlayerUI _playerUI;
+    protected List<Item> _item;
     public GameObject pre_bullet;
     public Rigidbody2D rigidBody
     {
@@ -13,7 +15,9 @@ public class IPlayer : MonoBehaviour
     }
     protected virtual void Awake()
     {
+        _playerUI = new PlayerUI();
         Debug.Log("Awake IPlayer");
+        _playerUI.Awake();
     }
     protected virtual void Start()
     {
