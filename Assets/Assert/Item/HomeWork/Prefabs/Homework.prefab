@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6537955604359770035}
   - component: {fileID: 3769575287058796773}
   - component: {fileID: 7088344596946648789}
+  - component: {fileID: 1214929680391680564}
   m_Layer: 0
   m_Name: Homework
   m_TagString: Untagged
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &7088344596946648789
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,3 +131,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.218522, y: 4.3510947}
   m_EdgeRadius: 0
+--- !u!114 &1214929680391680564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367212590479567405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ce28e0e48eec244826dc49b8137fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

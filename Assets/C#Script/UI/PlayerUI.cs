@@ -3,23 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUI 
+public class PlayerUI : MonoBehaviour 
 {
-    public Text text1;
-    public Text text2;
-    public Text Text1
+    public Text _show_PickUp;
+    public Text _show_has_picked;
+
+
+    void Awake()
     {
-        get { return text1; }
+        GameObject canvas = GameObject.Find("Canvas");
+        _show_PickUp = canvas.GetComponentsInChildren<Text>()[0];
+        _show_has_picked = canvas.GetComponentsInChildren<Text>()[1];
+        if (_show_PickUp == null || _show_has_picked == null) Debug.LogError("no prefabs");
     }
-    public Text Text2
+    void Start()
     {
-        get { return text2; }
+        hide_pick_up_text();
+        _show_has_picked.enabled = false;
+    }
+    public void show_pick_up_text()
+    {
+        _show_PickUp.enabled = true;
+
+    }
+    public void hide_pick_up_text()
+    {
+        _show_PickUp.enabled = false;
+    }
+    public void show_has_picked()
+    {
+        StartCoroutine(showToast(_show_has_picked));
     }
 
-    public void Awake()
+    private IEnumerator showToast(Text t ,int time = 1)
     {
-        if (text1 == null || text2 == null) Debug.LogError("no prefabs");
+        t.enabled = true;
+        yield return new WaitForSeconds(time);
+        t.enabled = false;
     }
-    
-
 }

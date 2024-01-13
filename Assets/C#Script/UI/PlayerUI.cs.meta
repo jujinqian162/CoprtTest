@@ -4,8 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - text1: {fileID: 7099965446344179327, guid: 8b2011bc39be9ab49b18bf9b9a3c03d4, type: 3}
-  - text2: {fileID: 7099965446344179327, guid: 8b2011bc39be9ab49b18bf9b9a3c03d4, type: 3}
+  - _show_PickUp: {fileID: 7099965446344179327, guid: 8b2011bc39be9ab49b18bf9b9a3c03d4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

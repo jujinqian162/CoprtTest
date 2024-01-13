@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIsystem : IGame
+public class UIsystem : MonoBehaviour
 {
-    public override void Awake()
+    PlayerUI _playerUI;
+    private void Awake()
     {
-        Debug.Log("UISystem Awake");
+        _playerUI = GetComponent<PlayerUI>();
     }
 
-    public override void Start()
+    private void Start()
     {
         
     }
 
-    public override void Update()
+    private void Update()
     {
         
     }
